@@ -18,14 +18,12 @@ public class Main {
         for(int T = sc.nextInt(); T > 0; T--) {
             int N = sc.nextInt();
             int M = sc.nextInt();
-            int dist = 0;
-            int min;
 
             int V[] = new int[N];
             int E[][] = new int[N][N];
 
             for(int i = N; i > 0; i--) {
-                V[i] = -1;
+                V[i] = 0;
                 for (int j = N; j > 0; j--)
                     E[i][j] = -1;
             }
@@ -34,17 +32,28 @@ public class Main {
                 E[sc.nextInt()][sc.nextInt()] = sc.nextInt();
 
             int i = 0;
+            int min = -1;
+            int idx = -1;
+
             while(true) {
-                min = E[i][0];
-                for (int j = 1; j < N; j++) {
-                    if (E[i][j] > 0) {
-                        V[i] = j;
-                        if(E[i][j] < min)
-                            min = E[i][j];
+                /* update distance and minimum distance */
+                for(int j = 0; j < N; j++) {
+                    if(E[i][j] != -1 && (V[j] > V[i] + E[i][j] || V[j] == 0)) {
+                        V[j] = V[i] + E[i][j];
+                        if(min == -1 || min > V[j]) {
+                            min = V[j];
+                            idx = j;
+                        }
                     }
                 }
+                if(idx == N-1)
+                    break;
+                else {
+                    i = idx;
+                    continue;
+                }
             }
-
+            out.println(min);
         }
 
         out.close();
