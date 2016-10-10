@@ -1,11 +1,11 @@
 package com.company;
 
+import java.util.Scanner;
 import java.io.*;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        /*
+
         Scanner sc = null;
         File file;
         try {
@@ -14,8 +14,8 @@ public class Main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        */
-        Scanner sc = new Scanner(System.in);
+
+        //Scanner sc = new Scanner(System.in);
 
         for (int T = sc.nextInt(); T > 0; T--) {
             int N = sc.nextInt();
